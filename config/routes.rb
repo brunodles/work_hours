@@ -1,5 +1,13 @@
 # -*- encoding : utf-8 -*-
 WorkedHours::Application.routes.draw do
+
+  resources :login, path: 'acesso' do
+    collection do
+      post :login, path: ''
+      get :logout, path: 'sair'
+    end
+  end
+
   resources :time_works, path: 'trabalho'
 
 
@@ -57,7 +65,7 @@ WorkedHours::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'login#index'
 
   # See how all your routes lay out with "rake routes"
 

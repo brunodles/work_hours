@@ -1,0 +1,54 @@
+<h2>WorkedHorus</h2>
+
+<div class="alert alert-success notice-hidden">
+  <p id="notice"><%= notice %></p>
+</div>
+<%= form_for @user, :url => {:action => 'login'}, :html => {:class => "form-horizontal"} do |f| %>
+
+    <% if @user.errors.any? %>
+        <div id="error_explanatio">
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li style="list-style: none;" class="msg-error-login  alert alert-error"><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% unless @msgRecuperaEmailSucesso.nil? %>
+        <div class="alert alert-success"><%= @msgRecuperaEmailSucesso %></div>
+    <% end %>
+    <div class="clear"></div>
+
+    <div class="input-prepend" title="Username">
+      <span class="add-on"><i class="halflings-icon user"></i></span>
+      <input class="input-large span10" name="user[login]" id="username" type="text" placeholder="Login" value="<%= @user.login %>"/>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="input-prepend" title="Password">
+      <span class="add-on"><i class="halflings-icon lock"></i></span>
+      <input class="input-large span10" name="user[password]" id="password" type="password" placeholder="Senha"/>
+    </div>
+    <div class="clearfix"></div>
+
+    <!--<label class="remember" for="remember"><input type="checkbox" id="remember" />Lembre-me</label>-->
+
+    <div class="button-login">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+    <div class="clearfix"></div>
+<% end %>
+
+<h3>Não possui uma conta no WorkedHorus?</h3>
+<p>
+  <a href="../login/novo_usuario">Clique aqui</a> e faça um cadastro free agora mesmo.
+</p>
+
+<div class="clear"></div>
+<br>
+
+<h3>Esqueceu Senha?</h3>
+<p>
+  Não tem problema, <a href="../login/recupera_senha">clique aqui</a> para resgatar a senha.
+</p>

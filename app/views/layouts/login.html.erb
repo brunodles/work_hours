@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>WorkedHours</title>
+      <%= stylesheet_link_tag    "application", :media => "all" %>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes"/>
+      <meta names="apple-mobile-web-app-status-bar-style" content = "black-translucent"/>
+
+      <%= csrf_meta_tags %>
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+          <div class="row-fluid">
+
+            <div class="row-fluid">
+              <div class="login-box">
+
+        <%= yield %>
+
+              </div><!--/span-->
+            </div><!--/row-->
+
+          </div><!--/fluid-row-->
+
+        </div><!--/.fluid-container-->
+
+        <%= javascript_include_tag "application" %>
+
+        <%= yield :js%>
+
+    </body>
+</html>
