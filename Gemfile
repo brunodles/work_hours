@@ -45,3 +45,7 @@ group :development do
   gem 'quiet_assets', '1.0.1'
   gem 'better_errors'
 end
+
+#Gera automaticamente o 'encoding: utf-8' nos arquivos .rb
+# No terminal coloque: gem install magic_encoding
+# Depois que instalar digite: magic_encoding

@@ -1,0 +1,57 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :access_number %><br />
+    <%= f.number_field :access_number %>
+  </div>
+  <div class="field">
+    <%= f.label :last_access_at %><br />
+    <%= f.datetime_select :last_access_at %>
+  </div>
+  <div class="field">
+    <%= f.label :last_access_ip %><br />
+    <%= f.text_field :last_access_ip %>
+  </div>
+  <div class="field">
+    <%= f.label :password_recovery_hash %><br />
+    <%= f.text_field :password_recovery_hash %>
+  </div>
+  <div class="field">
+    <%= f.label :password_recovery_at %><br />
+    <%= f.datetime_select :password_recovery_at %>
+  </div>
+  <div class="field">
+    <%= f.label :deleted_at %><br />
+    <%= f.datetime_select :deleted_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

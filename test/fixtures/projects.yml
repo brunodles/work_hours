@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  deleted_at: 2013-12-05 15:12:46
+
+two:
+  user_id: 1
+  name: MyString
+  deleted_at: 2013-12-05 15:12:46

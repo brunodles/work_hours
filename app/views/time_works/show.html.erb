@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @time_work.user_id %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @time_work.project_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @time_work.description %>
+</p>
+
+<p>
+  <b>Is open:</b>
+  <%= @time_work.is_open %>
+</p>
+
+<p>
+  <b>Begin at:</b>
+  <%= @time_work.begin_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @time_work.end_at %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @time_work.deleted_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_time_work_path(@time_work) %> |
+<%= link_to 'Back', time_works_path %>

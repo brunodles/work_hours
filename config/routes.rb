@@ -1,4 +1,13 @@
+# -*- encoding : utf-8 -*-
 WorkedHours::Application.routes.draw do
+  resources :time_works, path: 'trabalho'
+
+
+  resources :projects, path: 'projetos'
+
+  resources :users, path: 'usuarios'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,35 @@
+<h1>Listing time_works</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Project</th>
+    <th>Description</th>
+    <th>Is open</th>
+    <th>Begin at</th>
+    <th>End at</th>
+    <th>Deleted at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @time_works.each do |time_work| %>
+  <tr>
+    <td><%= time_work.user_id %></td>
+    <td><%= time_work.project_id %></td>
+    <td><%= time_work.description %></td>
+    <td><%= time_work.is_open %></td>
+    <td><%= time_work.begin_at %></td>
+    <td><%= time_work.end_at %></td>
+    <td><%= time_work.deleted_at %></td>
+    <td><%= link_to 'Show', time_work %></td>
+    <td><%= link_to 'Edit', edit_time_work_path(time_work) %></td>
+    <td><%= link_to 'Destroy', time_work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Time work', new_time_work_path %>
