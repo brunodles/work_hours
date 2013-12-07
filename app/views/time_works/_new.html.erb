@@ -1,4 +1,4 @@
-<h1>Editing time_work</h1>
+<h1>New time_work</h1>
 
 <%= form_for(@time_work) do |f| %>
     <% if @time_work.errors.any? %>
@@ -14,27 +14,11 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :project_id %><br />
+      <%= f.label :project_id, :Projetos %><br />
       <%= f.collection_select :project_id, Project.order(:name),  :id, :name, prompt: true%>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br />
-      <%= f.text_field :description %>
-    </div>
-    <div class="field">
-      <%= f.label :begin_at %><br />
-      <%= f.datetime_select :begin_at %>
-    </div>
-    <div class="field">
-      <%= f.label :end_at %><br />
-      <%= f.datetime_select :end_at %>
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit :Iniciar %>
     </div>
 <% end %>
-
-
-<%= link_to 'Show', @time_work %> |
-<%= link_to 'Back', time_works_path %>

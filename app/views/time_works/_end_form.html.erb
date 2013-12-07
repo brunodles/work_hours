@@ -1,0 +1,26 @@
+<h1>End time_work</h1>
+
+<%= form_for(@time_work, url: {action: :end_time} ) do |f| %>
+    <% if @time_work.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@time_work.errors.count, "error") %> prohibited this time_work from being saved:</h2>
+
+          <ul>
+            <% @time_work.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :id %>
+
+    <div class="field">
+      <%= f.label :description, 'Descrição' %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit :Finalizar %>
+    </div>
+<% end %>
