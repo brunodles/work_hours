@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Project < ActiveRecord::Base
+  include ModelBase
+
   has_soft_deletion default_scope: true
 
   attr_accessible :user_id, :name, :deleted_at

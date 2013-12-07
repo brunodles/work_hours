@@ -8,7 +8,11 @@ WorkedHours::Application.routes.draw do
     end
   end
 
-  resources :time_works, path: 'trabalho'
+  resources :time_works, path: 'trabalho' do
+    #collection do
+    #  put :end_time, path: ''
+    #end
+  end
 
 
   resources :projects, path: 'projetos'

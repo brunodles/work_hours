@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order :name
+    @projects = Project.all_by_user_session user_web, :name
 
     respond_to do |format|
       format.html # index.html.erb

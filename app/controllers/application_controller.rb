@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     session[:user_web] = user
   end
 
+  def id_belongs_user_web? (id)
+    return id.to_i == user_web.id
+  end
+
   private
 
   def verify_login
