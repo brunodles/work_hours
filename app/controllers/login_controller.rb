@@ -22,7 +22,7 @@ class LoginController < ApplicationController
 
            set_user_web user.update_attributes_to_login
 
-           format.html { redirect_to projects_url}
+           format.html { redirect_to time_works_path}
          else
            @user.errors.add(:login, 'Login/Senha incorretos.')
            format.html { render action: 'index'}
