@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Método que redireciona para o controller/action caso o :id seja diferente do id do user_web
+  def redirect(format, id, controller, action)
+    unless id_belongs_user_web? id
+      format.html { redirect_to controller: controller, action: action }
+    end
+  end
+
   def verify_login
     redirect_to controller: 'login', action: 'index' if user_web.nil?
   end

@@ -18,7 +18,7 @@ class TimeWorksController < ApplicationController
     @time_work = TimeWork.find(params[:id])
 
     respond_to do |format|
-      redirect_index_with_format(format, @time_work.user_id)
+      redirect_with_format(format, @time_work.user_id)
 
       format.html # show.html.erb
       format.json { render json: @time_work }
@@ -41,7 +41,8 @@ class TimeWorksController < ApplicationController
     @time_work = TimeWork.find(params[:id])
 
     respond_to do | format |
-      redirect_index_with_format(format, @time_work.user_id)
+      redirect_with_format(format, @time_work.user_id)
+      format.html
     end
 
   end
@@ -78,8 +79,8 @@ class TimeWorksController < ApplicationController
     @time_work = TimeWork.find(params[:time_work][:id])
 
     respond_to do |format|
-      redirect_index_with_format(format, @time_work.user_id)
-      puts "passou"
+      redirect_with_format(format, @time_work.user_id)
+
       if @time_work.update_attributes(description: params[:time_work][:description],
                                       is_open:     false,
                                       end_at:      Time.now
@@ -100,7 +101,7 @@ class TimeWorksController < ApplicationController
     @time_work = TimeWork.find(params[:id])
 
     respond_to do |format|
-      redirect_index_with_format(format, @time_work.user_id)
+      redirect_with_format(format, @time_work.user_id)
 
       if @time_work.update_attributes(params[:time_work])
         format.html { redirect_to @time_work, notice: 'Time work was successfully updated.' }
@@ -118,7 +119,7 @@ class TimeWorksController < ApplicationController
     @time_work = TimeWork.find(params[:id])
 
     respond_to do |format|
-      redirect_index_with_format(format, @time_work.user_id)
+      redirect_with_format(format, @time_work.user_id)
 
       @time_work.soft_delete
 
@@ -129,9 +130,7 @@ class TimeWorksController < ApplicationController
 
   private
 
-  def redirect_index_with_format(format, id)
-    unless id_belongs_user_web? id
-      format.html { redirect_to controller: :time_works, action: :index }
-    end
+  def redirect_with_format(format, id)
+    redirect(format, id, :time_works, :index)
   end
 end

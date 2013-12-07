@@ -17,6 +17,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     respond_to do |format|
+      redirect_with_format(format, @project.user_id)
+
       format.html # show.html.erb
       format.json { render json: @project }
     end
@@ -36,16 +38,22 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+
+    respond_to do | format |
+        redirect_with_format(format, @project.user_id)
+        format.html
+    end
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.user_id  = user_web.id
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
@@ -60,8 +68,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     respond_to do |format|
+      redirect_with_format(format, @project.user_id)
+
       if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -74,11 +84,20 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
-    @project.soft_delete
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      redirect_with_format(format, @project.user_id)
+
+      @project.soft_delete
+
+      format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def redirect_with_format(format, id)
+    redirect(format, id, :projects, :index)
   end
 end
