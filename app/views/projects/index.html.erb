@@ -1,21 +1,20 @@
-<h1>Listing projects</h1>
+<h1 class="pull-left">Projetos</h1>
 
-<table>
+<%= link_to (new_project_path), :class => "btn btn-primary pull-right margin-top-med" do %> Novo <% end %>
+
+<table class="table">
   <tr>
-    <th>Name</th>
-    <th>Actions</th>
+    <th>Nome</th>
+    <th>Ações</th>
   </tr>
 
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= link_to 'Show', project %>
-        <%= link_to 'Edit', edit_project_path(project) %>
-        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td>
+        <%= link_to 'Editar', edit_project_path(project) %>
+        <%= link_to 'Remover', project, method: :delete, data: { confirm: 'Tem certeza?' } %>
+        </td>
+      </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Project', new_project_path %>

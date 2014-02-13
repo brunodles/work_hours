@@ -19,7 +19,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { access_number: @user.access_number, deleted_at: @user.deleted_at, email: @user.email, last_access_at: @user.last_access_at, last_access_ip: @user.last_access_ip, login: @user.login, name: @user.name, password: @user.password, password_recovery_at: @user.password_recovery_at, password_recovery_hash: @user.password_recovery_hash }
+      post :create, user: { access_number: @user.access_number, deleted_at: @user.deleted_at, email: @user.email, last_access_at: @user.last_access_at, last_access_ip: @user.last_access_ip, logins: @user.login, name: @user.name, password: @user.password, password_recovery_at: @user.password_recovery_at, password_recovery_hash: @user.password_recovery_hash }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -36,7 +36,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, id: @user, user: { access_number: @user.access_number, deleted_at: @user.deleted_at, email: @user.email, last_access_at: @user.last_access_at, last_access_ip: @user.last_access_ip, login: @user.login, name: @user.name, password: @user.password, password_recovery_at: @user.password_recovery_at, password_recovery_hash: @user.password_recovery_hash }
+    put :update, id: @user, user: { access_number: @user.access_number, deleted_at: @user.deleted_at, email: @user.email, last_access_at: @user.last_access_at, last_access_ip: @user.last_access_ip, logins: @user.login, name: @user.name, password: @user.password, password_recovery_at: @user.password_recovery_at, password_recovery_hash: @user.password_recovery_hash }
     assert_redirected_to user_path(assigns(:user))
   end
 

@@ -1,5 +1,3 @@
-<h1>End time_work</h1>
-
 <%= form_for(@time_work, url: {action: :end_time} ) do |f| %>
     <% if @time_work.errors.any? %>
         <div id="error_explanation">
@@ -15,12 +13,69 @@
 
     <%= f.hidden_field :id %>
 
-    <div class="field">
-      <%= f.label :description, 'Descrição' %><br />
-      <%= f.text_field :description %>
-    </div>
+    <p class="lead"><%= @time_work.project_name %></p>
 
     <div class="actions">
-      <%= f.submit :Finalizar %>
+      <%= f.submit 'Parar Contagem', class: 'btn btn-lg btn-danger' %>
     </div>
+
+    <br/>
+
+    <div class="field">
+      <p class="lead">Descrição</p>
+      <%= f.text_area :description, rows: 4 %>
+    </div>
+
+<% end %>
+<% content_for :js do %>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            var contador = jQuery(".contador-label");
+            var timed = '<%= @time_work.timing %>';
+            var array_hora = timed.split(',');
+            console.log('array_hora', array_hora);
+
+            var sHors = "0"+0;
+            var sMins = "0"+0;
+            var sSecs = -1;
+            var iHors = parseInt(array_hora[0]);
+            var iMins = parseInt(array_hora[1]);
+            var iSecs = parseInt(array_hora[2]);
+
+            if (iHors > 9) {
+                sHors = ""+iHors;
+            } else {
+                sHors = "0"+iHors;
+            }
+            if (iMins > 9) {
+                sMins = ""+iMins;
+            } else {
+                sMins = "0"+iMins;
+            }
+            if (iSecs > 9) {
+                sSecs = ""+iSecs;
+            } else {
+                sSecs = "0"+iSecs;
+            }
+
+            var contagem = "";
+            setTimeout(getSecs,1000);
+            function getSecs(){
+                sSecs++;
+                if(sSecs==60){sSecs=0;sMins++;
+                    if(sMins<=9)sMins="0"+sMins;
+                }
+                if(sMins==60){sMins="0"+0;sHors++;
+                    if(sHors<=9)sHors="0"+sHors;
+                }
+                if(sSecs<=9)sSecs="0"+sSecs;
+                contagem = sHors + " : " + sMins + " : " + sSecs;
+                contador.html(contagem);
+                //console.log('contagem', contagem);
+                setTimeout(getSecs,1000);
+            }
+
+        });
+    </script>
 <% end %>

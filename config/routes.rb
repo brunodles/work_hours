@@ -1,17 +1,18 @@
 # -*- encoding : utf-8 -*-
 WorkedHours::Application.routes.draw do
 
-  resources :login, path: 'acesso' do
+  resources :logins, path: 'acesso' do
     collection do
-      post :login, path: ''
+      post :sign_in, path: ''
       get :logout, path: 'sair'
     end
   end
 
   resources :time_works, path: 'trabalho' do
-    #collection do
+    collection do
+      get :contador
     #  put :end_time, path: ''
-    #end
+    end
   end
 
 

@@ -3,9 +3,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @link_name = "projetos"
     @projects = Project.all_by_user_session user_web, :name
 
     respond_to do |format|
+      respond_msg
       format.html # index.html.erb
       format.json { render json: @projects }
     end
@@ -53,7 +55,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
+        @@msg_success = 'Projeto criado com sucesso'
+        format.html { redirect_to projects_path}
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
@@ -71,7 +74,8 @@ class ProjectsController < ApplicationController
       redirect_with_format(format, @project.user_id)
 
       if @project.update_attributes(params[:project])
-        format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
+        @@msg_success = 'Projeto atualizado com sucesso'
+        format.html { redirect_to projects_path }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -90,7 +94,8 @@ class ProjectsController < ApplicationController
 
       @project.soft_delete
 
-      format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
+      @@msg_success = 'Projeto removido com sucesso'
+      format.html { redirect_to projects_url}
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,36 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="link contador"><a href="<%= contador_time_works_url %>">Contador</a></li>
+    <li class="link horas"><a href="<%= time_works_path %>">Horas</a></li>
+    <li class="link projetos"><a href="<%= projects_path %>">Projetos</a></li>
+    <li class="dropdown link usuario">
+      <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+        <%= user_web.name %>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="link"><a href="<%= edit_user_path(user_web) %>">Perfil</a></li>
+        <li class="divider"></li>
+        <li class="link"><a href="<%= logout_logins_url %>">Sair</a></li>
+
+      </ul>
+    </li>
+
+  </ul>
+  <h3 class="text-muted">WorkedHours</h3>
+</div>
+
+<% content_for :js do %>
+<script type="text/javascript">
+
+    jQuery(document).ready(function(){
+        var link_name   = '<%= @link_name %>';
+        var link_to_active = jQuery("."+link_name);
+        var link = jQuery(".link");
+
+        link.removeClass('active');
+        link_to_active.addClass('active');
+
+    });
+</script>
+<% end %>

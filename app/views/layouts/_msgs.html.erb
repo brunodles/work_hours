@@ -1,0 +1,17 @@
+<div id="msgs-success" class="alert alert-success hidden">...</div>
+<div id="msgs-error" class="alert alert-danger hidden">...</div>
+
+<%= content_for :js do %>
+    <script type="text/javascript">
+
+        var msg_success = '<%= @msg_success unless @msg_success.nil? %>';
+        var msg_error   = '<%= @msg_error unless @msg_error.nil?%>';
+        var div_success = jQuery('#msgs-success');
+        var div_error   = jQuery('#msgs-error');
+        console.log('msg_success', msg_success);
+        console.log('msg_error', msg_error);
+        show_msgs(msg_success, div_success);
+        show_msgs(msg_error, div_error);
+
+    </script>
+<% end %>

@@ -1,5 +1,3 @@
-<h1>New time_work</h1>
-
 <%= form_for(@time_work) do |f| %>
     <% if @time_work.errors.any? %>
         <div id="error_explanation">
@@ -13,12 +11,15 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :project_id, :Projetos %><br />
+    <div class="lead">
+      <p class="lead">Projetos</p>
       <%= f.collection_select :project_id, Project.order(:name),  :id, :name, prompt: true%>
     </div>
 
+    <br/>
+
     <div class="actions">
-      <%= f.submit :Iniciar %>
+      <%= f.submit 'Iniciar Contagem', class: 'btn btn-lg btn-success' %>
     </div>
+
 <% end %>

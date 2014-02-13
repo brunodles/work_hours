@@ -3,7 +3,7 @@
     <head>
       <title>WorkedHours</title>
 
-      <%= stylesheet_link_tag    "application", :media => "all" %>
+      <%= stylesheet_link_tag    'application', :media => 'all' %>
 
       <link rel="shortcut icon" href="/assets/icons/icons_workhours-57.png">
       <link rel="apple-touch-icon" href="/assets/icons/icons_workhours-57.png"/>
@@ -19,20 +19,15 @@
     </head>
 
     <body>
-
         <div class="container">
-            <%= render 'layouts/header' %>
 
-            <%= render 'layouts/msgs' %>
+          <%= render 'layouts/msgs' %>
 
             <%= yield %>
-
-            <%= render 'layouts/footer' %>
         </div>
 
         <%= javascript_include_tag 'application' %>
-
-        <%= yield :js %>
+        <%= yield :js%>
 
     </body>
 </html>

@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   has_soft_deletion default_scope: true
 
-  attr_accessible :name, :login , :password, :email,
+  attr_accessible :name, :login , :password, :email, :password_confirmation,
                   :access_number, :last_access_at, :last_access_ip,
                   :password_recovery_at, :password_recovery_hash, :deleted_at
 
@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :login, :password, :email
   validates_uniqueness_of :login, :email
+
+  validates_confirmation_of :password
 
   validate :email_valid?
 
