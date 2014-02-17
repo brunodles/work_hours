@@ -6,6 +6,7 @@
   <th>Descrição</th>
   <th>Início</th>
   <th>Término</th>
+  <th>Horas trabalhada</th>
   <th>Ações</th>
 </tr>
 
@@ -15,6 +16,7 @@
       <td><%= time_work.description %></td>
       <td><%= time_work.begin_at.to_s(:dt_time_with_time) %></td>
       <td><%= time_work.end_at.to_s(:dt_time_with_time) unless time_work.end_at.nil? %></td>
+      <td><%= time_work.hours_worked %></td>
       <td>
         <%= link_to 'Editar', edit_time_work_path(time_work) %>
         <%= link_to 'Remover', time_work, method: :delete, data: { confirm: 'Are you sure?' } %>

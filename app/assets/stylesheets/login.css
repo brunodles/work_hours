@@ -44,3 +44,8 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.login-input {
+    border-radius: 4px 4px 0px 0px;
+    top: 1px;
+}

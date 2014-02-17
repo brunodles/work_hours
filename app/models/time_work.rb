@@ -38,6 +38,13 @@ class TimeWork < ActiveRecord::Base
     return resultado
   end
 
+  def hours_worked
+    time_works = [self]
+    resultado = TimeWork.format_time_hash(time_works)
+
+    return resultado
+  end
+
   def self.worked_today user
     time_works = time_works_today(user.id)
     resultado = format_time_hash(time_works)
