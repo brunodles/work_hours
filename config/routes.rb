@@ -21,6 +21,8 @@ WorkedHours::Application.routes.draw do
   resources :users, path: 'usuarios'
 
 
+  match 'relatorios' => 'reports#index', as: :reports
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

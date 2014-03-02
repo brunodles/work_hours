@@ -24,16 +24,33 @@ class TimeWork < ActiveRecord::Base
   end
 
   def self.time_works_today(user_id, project_id = nil)
-    query = String.new
+    return self.time_works_any_time user_id, project_id, Time.zone.now.to_date
+  end
+
+  def self.time_works_any_time(user_id, project_id = nil, time = nil)
+    query      = String.new
+    query_time = String.new
     unless project_id.nil?
       query = "project_id = (#{project_id}) AND"
     end
-    return self.where("#{query} user_id = #{user_id} AND to_char(begin_at, 'YYYY-MM-DD') = '#{Time.now.to_date}'")
+    unless time.nil?
+      query_time = "to_char(begin_at, 'YYYY-MM-DD') = '#{time}' AND"
+    end
+    return self.where(" #{query_time} #{query} user_id = #{user_id}")
+
   end
 
   def self.worked_today_project(project)
     time_works = time_works_today(project.user.id, project.id)
-    resultado = format_time_hash(time_works)
+    resultado  = format_time_hash(time_works)
+
+    return resultado
+  end
+
+  def self.worked_by_project(project)
+    time_works = time_works_any_time(project.user.id, project.id)
+    puts "time_works: #{time_works}"
+    resultado  = format_time_hash(time_works)
 
     return resultado
   end

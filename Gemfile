@@ -44,6 +44,7 @@ group :development, :stage do
   gem 'thin', '1.5.0'
   gem 'quiet_assets', '1.0.1'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 #Gera automaticamente o 'encoding: utf-8' nos arquivos .rb

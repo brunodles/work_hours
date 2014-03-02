@@ -2,9 +2,6 @@
 class TimeWorksController < ApplicationController
 
   def contador
-    puts Time.now.to_date
-    puts Time.now
-    puts Time.zone.now
     @link_name = "contador"
     @time_work  = TimeWork.new
     respond_to do |format|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ChangeColumnsToTimeWorks < ActiveRecord::Migration
   def up
     change_column :time_works, :begin_at, 'timestamp with time zone'
