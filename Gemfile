@@ -47,6 +47,8 @@ group :development, :stage do
   gem 'binding_of_caller'
 end
 
+gem 'polyglot', '0.3.4'
+
 #Gera automaticamente o 'encoding: utf-8' nos arquivos .rb
 # No terminal coloque: gem install magic_encoding
 # Depois que instalar digite: magic_encoding

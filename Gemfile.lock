@@ -111,6 +111,7 @@ DEPENDENCIES
   binding_of_caller
   jquery-rails
   pg (= 0.14.1)
+  polyglot (= 0.3.4)
   quiet_assets (= 1.0.1)
   rails (= 3.2.9)
   soft_deletion
