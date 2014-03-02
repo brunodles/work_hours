@@ -8,14 +8,13 @@
                   $(document).ready(function(){
                       var id ="#user_<%= k %>";
                       var msg ="<%= @user.errors.get(k)%>";
-                      //console.log(id+" - "+msg);
+                      console.log(id+" - "+msg);
                       mostrar_menssagem_error(id,msg);
                   });
               </script>
           <% end %>
       <% end if @user.errors.any? %>
     </ul>
-
     <h2 class="form-signin-heading">WorkedHours</h2>
 
     <%= f.text_field :login, placeholder: 'Login', class: 'form-control login-input' %>

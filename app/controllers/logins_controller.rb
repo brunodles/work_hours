@@ -31,7 +31,7 @@ class LoginsController < ApplicationController
 
            format.html { redirect_to controller: 'time_works', action: 'contador'}
          else
-           @user.errors.add(:logins, 'Login/Senha incorretos.')
+           @user.errors.add(:login, 'Login/Senha incorretos.')
            format.html { render action: 'index'}
            format.json { render json: @user.errors, status: :unprocessable_entity }
          end

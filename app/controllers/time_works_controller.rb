@@ -2,6 +2,9 @@
 class TimeWorksController < ApplicationController
 
   def contador
+    puts Time.now.to_date
+    puts Time.now
+    puts Time.zone.now
     @link_name = "contador"
     @time_work  = TimeWork.new
     respond_to do |format|
@@ -75,8 +78,7 @@ class TimeWorksController < ApplicationController
         @time_work  = TimeWork.new(params[:time_work])
 
         @time_work.user_id  = user_web.id
-        @time_work.begin_at = Time.now
-        puts "@time_work.begin_at : #{@time_work.begin_at }"
+        @time_work.begin_at = Time.zone.now
 
         if @time_work.save
           format.html { redirect_to action: 'contador'}
@@ -97,7 +99,7 @@ class TimeWorksController < ApplicationController
 
       if @time_work.update_attributes(description: params[:time_work][:description],
                                       is_open:     false,
-                                      end_at:      Time.now
+                                      end_at:      Time.zone.now
       )
         format.html { redirect_to action: 'contador' }
         format.json { head :no_content }
