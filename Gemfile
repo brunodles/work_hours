@@ -44,8 +44,10 @@ group :development, :stage do
   gem 'thin', '1.5.0'
   gem 'quiet_assets', '1.0.1'
   gem 'better_errors'
-  #gem 'binding_of_caller'
+  gem 'binding_of_caller'
 end
+
+gem 'polyglot', '0.3.3'
 
 #Gera automaticamente o 'encoding: utf-8' nos arquivos .rb
 # No terminal coloque: gem install magic_encoding
