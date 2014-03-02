@@ -48,6 +48,7 @@ group :development, :stage do
 end
 
 gem 'polyglot', '0.3.3'
+gem 'debug_inspector', '0.0.1'
 
 #Gera automaticamente o 'encoding: utf-8' nos arquivos .rb
 # No terminal coloque: gem install magic_encoding
