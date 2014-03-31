@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>WorkedHours</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+    <head>
+      <title>WorkedHours</title>
 
-<%= yield %>
+      <%= stylesheet_link_tag    "application", :media => "all" %>
 
-<%= javascript_include_tag "application" %>
+      <link rel="shortcut icon" href="/assets/icons/icons_workhours-57.png">
+      <link rel="apple-touch-icon" href="/assets/icons/icons_workhours-57.png"/>
+      <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/icons_workhours-72.png" />
+      <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/icons_workhours-114.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/icons_workhours-144.png" />
 
-<%= yield :js %>
-</body>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+      <meta name="apple-mobile-web-app-capable" content="yes"/>
+      <meta names="apple-mobile-web-app-status-bar-style" content = "black-translucent"/>
+
+      <%= csrf_meta_tags %>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <%= render 'layouts/header' %>
+
+            <%= render 'layouts/msgs' %>
+
+            <%= yield %>
+
+            <%= render 'layouts/footer' %>
+        </div>
+
+        <%= javascript_include_tag 'application' %>
+
+        <%= yield :js %>
+
+    </body>
 </html>

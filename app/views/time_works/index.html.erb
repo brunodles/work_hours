@@ -1,25 +1,26 @@
-<%= raw_correct_form %>
+<h1>Horas</h1>
 
-<h1>Listing time_works</h1>
-
-<table>
-  <tr>
-    <th>Project</th>
-    <th>Description</th>
-    <th>Begin at</th>
-    <th>End at</th>
-    <th>Actions</th>
-  </tr>
+<table class="table">
+<tr>
+  <th>Projeto</th>
+  <th>Descrição</th>
+  <th>Início</th>
+  <th>Término</th>
+  <th>Horas trabalhada</th>
+  <th>Ações</th>
+</tr>
 
 <% @time_works.each do |time_work| %>
-  <tr>
-    <td><%= time_work.project.name unless time_work.project_id.nil? %></td>
-    <td><%= time_work.description %></td>
-    <td><%= time_work.begin_at.to_s(:dt_time_with_time) %></td>
-    <td><%= time_work.end_at.to_s(:dt_time_with_time) unless time_work.end_at.nil? %></td>
-    <td><%= link_to 'Show', time_work %>
-        <%= link_to 'Edit', edit_time_work_path(time_work) %>
-        <%= link_to 'Destroy', time_work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <tr>
+      <td><%= time_work.project.name unless time_work.project_id.nil? %></td>
+      <td><%= time_work.description %></td>
+      <td><%= time_work.begin_at.to_s(:dt_time_with_time) %></td>
+      <td><%= time_work.end_at.to_s(:dt_time_with_time) unless time_work.end_at.nil? %></td>
+      <td><%= time_work.hours_worked %></td>
+      <td>
+        <%= link_to 'Editar', edit_time_work_path(time_work) %>
+        <%= link_to 'Remover', time_work, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
 <% end %>
 </table>

@@ -1,0 +1,40 @@
+<%= form_for(:time_work, url: reports_path) do |f| %>
+
+    <p class="lead">Selecione os projetos para o relatório</p>
+
+    <select multiple="multiple" class="multi-select" name="projects_ids[]">
+      <% Project.projects_by_user(user_web).each do |project| %>
+          <option value='<%= project.id %>'
+                  <% if @projects_ids.include?(project.id.to_s) %>
+                  selected
+                  <% end %>
+                  ><%= project.name %>
+          </option>
+      <% end %>
+    </select>
+    <br/>
+    <div class="actions">
+      <%= f.submit 'Gerar relatório', class: 'btn btn-primary' %>
+    </div>
+
+<% end %>
+
+<% unless @projects.empty? %>
+    <div class="row marketing">
+
+      <div class="col-lg-6">
+        <h4>Horas trabalhadas por projeto</h4>
+        <% @projects.each do |p| %>
+            <p><%= p.name %> - <%= TimeWork.worked_by_project p %></p>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+
+<%= content_for :js do %>
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.multi-select').multiSelect();
+        });
+    </script>
+<% end %>

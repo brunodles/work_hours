@@ -1,12 +1,25 @@
 # -*- encoding : utf-8 -*-
 class TimeWorksController < ApplicationController
+
+  def contador
+    @link_name = "contador"
+    @time_work  = TimeWork.new
+    respond_to do |format|
+      respond_msg
+      format.html # contador.html.erb
+      format.json { render json: {time_work: @time_work} }
+    end
+  end
+
   # GET /time_works
   # GET /time_works.json
   def index
+    @link_name = "horas"
     @time_work  = TimeWork.new
     @time_works = TimeWork.all_by_user_session user_web
 
     respond_to do |format|
+      respond_msg
       format.html # index.html.erb
       format.json { render json: {time_works: @time_works, time_work: @time_work} }
     end
@@ -62,10 +75,10 @@ class TimeWorksController < ApplicationController
         @time_work  = TimeWork.new(params[:time_work])
 
         @time_work.user_id  = user_web.id
-        @time_work.begin_at = Time.now
+        @time_work.begin_at = Time.zone.now
 
         if @time_work.save
-          format.html { redirect_to time_works_path, notice: 'Time work was successfully created.' }
+          format.html { redirect_to action: 'contador'}
           format.json { render json: @time_work, status: :created, location: @time_work }
         else
           format.html { render action: :index }
@@ -83,12 +96,11 @@ class TimeWorksController < ApplicationController
 
       if @time_work.update_attributes(description: params[:time_work][:description],
                                       is_open:     false,
-                                      end_at:      Time.now
+                                      end_at:      Time.zone.now
       )
-        format.html { redirect_to time_works_path, notice: 'Time work was successfully updated.' }
+        format.html { redirect_to action: 'contador' }
         format.json { head :no_content }
       else
-        puts "entrou else"
         format.html { render time_works_path }
         format.json { render json: @time_work.errors, status: :unprocessable_entity }
       end
@@ -104,10 +116,11 @@ class TimeWorksController < ApplicationController
       redirect_with_format(format, @time_work.user_id)
 
       if @time_work.update_attributes(params[:time_work])
-        format.html { redirect_to @time_work, notice: 'Time work was successfully updated.' }
+        @@msg_success = 'Hora atualizada com sucesso'
+        format.html { redirect_to action: :index }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render time_works_url }
         format.json { render json: @time_work.errors, status: :unprocessable_entity }
       end
     end
@@ -123,7 +136,8 @@ class TimeWorksController < ApplicationController
 
       @time_work.soft_delete
 
-      format.html { redirect_to time_works_url, notice: 'Time work was successfully deleted.' }
+      @@msg_success = 'Hora removida com sucesso'
+      format.html { redirect_to time_works_url }
       format.json { head :no_content }
     end
   end

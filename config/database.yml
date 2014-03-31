@@ -63,5 +63,5 @@ production:
   database: worked_hours_production
   pool: 5
   username: postgres
-  password: postgres
-  host: localhost
+#  password: postgres
+#  host: localhost

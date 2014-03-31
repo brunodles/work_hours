@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <h1 class="contador-label">00 : 00 : 00</h1>
+  <%= raw_correct_form %>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4>Horas trabalhadas hoje</h4>
+    <p><%= TimeWork.worked_today user_web%></p>
+  </div>
+
+  <div class="col-lg-6">
+    <h4>Projetos trabalhados hoje</h4>
+    <% user_web.projects.each do |p| %>
+        <p><%= p.name %> - <%= TimeWork.worked_today_project p %></p>
+    <% end %>
+  </div>
+</div>

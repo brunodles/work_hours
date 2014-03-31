@@ -1,0 +1,38 @@
+<%= form_for @user, :url => {:action => 'sign_in'}, :html => {:class => "form-signin"} do |f| %>
+
+    <ul>
+      <% @user.errors.keys.each do |k| %>
+          <% content_for :js do %>
+              <script type="text/javascript">
+
+                  $(document).ready(function(){
+                      var id ="#user_<%= k %>";
+                      var msg ="<%= @user.errors.get(k)%>";
+                      console.log(id+" - "+msg);
+                      mostrar_menssagem_error(id,msg);
+                  });
+              </script>
+          <% end %>
+      <% end if @user.errors.any? %>
+    </ul>
+    <h2 class="form-signin-heading">WorkedHours</h2>
+
+    <%= f.text_field :login, placeholder: 'Login', class: 'form-control login-input' %>
+    <%= f.password_field :password, placeholder: 'Senha', class: 'form-control' %>
+
+    <label class="checkbox">
+      <input type="checkbox" value="remember-me"> Lembrar-me
+    </label>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <br/>
+    <label>
+        Não possui uma conta no WorkedHours?
+   </label>
+    <p><a href="<%= new_user_path %>" class="btn-link">Clique aqui</a> e faça seu cadastro free agora mesmo.</p>
+    <!--<label>-->
+        <!--Esqueceu Senha?-->
+   <!--</label>-->
+    <!--<p>Não tem problema, <a href="#" class="btn-link">clique aqui</a> para resgatar sua senha.</p>-->
+
+<% end %>

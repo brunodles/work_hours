@@ -1,22 +1,27 @@
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<%= form_for @project, :html => {:class => "form-form"} do |f| %>
+    <ul>
+      <% @project.errors.keys.each do |k| %>
+          <% content_for :js do %>
+              <script type="text/javascript">
 
-      <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                  $(document).ready(function(){
+                      var id ="#project_<%= k %>";
+                      var msg ="<%= @project.errors.get(k)%>";
+                      //console.log(id+" - "+msg);
+                      mostrar_menssagem_error(id,msg);
+                  });
+              </script>
+          <% end %>
+      <% end if @project.errors.any? %>
+    </ul>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+
+  <div class="form-group">
+    <%= f.label :Nome %><br />
+    <%= f.text_field :name, class: "form-control", placeholder: "Nome do projeto" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <button class="btn btn-primary" type="submit">Salvar</button>
   </div>
 <% end %>

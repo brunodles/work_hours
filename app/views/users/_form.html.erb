@@ -1,57 +1,48 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @user, :html => {:class => "form-form"} do |f| %>
+    <ul>
+      <% @user.errors.keys.each do |k| %>
+          <% content_for :js do %>
+              <script type="text/javascript">
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                  $(document).ready(function(){
+                      var id ="#user_<%= k %>";
+                      var msg ="<%= @user.errors.get(k)%>";
+                      //console.log(id+" - "+msg);
+                      mostrar_menssagem_error(id,msg);
+                  });
+              </script>
+          <% end %>
+      <% end if @user.errors.any? %>
+    </ul>
+
+    <div class="form-group">
+        <%= f.label :Nome %><br />
+        <%= f.text_field :name, class: "form-control" %>
     </div>
-  <% end %>
+    <div class="form-group">
+      <%= f.label 'E-mail' %><br />
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :access_number %><br />
-    <%= f.number_field :access_number %>
-  </div>
-  <div class="field">
-    <%= f.label :last_access_at %><br />
-    <%= f.datetime_select :last_access_at %>
-  </div>
-  <div class="field">
-    <%= f.label :last_access_ip %><br />
-    <%= f.text_field :last_access_ip %>
-  </div>
-  <div class="field">
-    <%= f.label :password_recovery_hash %><br />
-    <%= f.text_field :password_recovery_hash %>
-  </div>
-  <div class="field">
-    <%= f.label :password_recovery_at %><br />
-    <%= f.datetime_select :password_recovery_at %>
-  </div>
-  <div class="field">
-    <%= f.label :deleted_at %><br />
-    <%= f.datetime_select :deleted_at %>
-  </div>
+    <% if @user.id.nil?%>
+        <%= render :partial => "inputs_new", :locals => {:f => f} %>
+    <% else %>
+        <%= render :partial => "inputs_edit", :locals => {:f => f} %>
+    <% end %>
+
   <div class="actions">
-    <%= f.submit %>
+    <button class="btn btn-primary" type="submit">Salvar</button>
   </div>
+<% end %>
+
+<%= content_for :js do %>
+    <script type="text/javascript">
+
+        var check_passwords = jQuery('.check-passwords');
+        var div_passwords = jQuery('.div-passwords');
+
+        check_passwords.on('click', function(){
+            div_passwords.toggleClass('hidden');
+        });
+    </script>
 <% end %>
